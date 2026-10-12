@@ -23,8 +23,14 @@ npm test                                        # node --test
   补 `.json` → 目录 `index.js`;相对导入基于引入者目录);acorn AST 提取
   `require` 字面量调用(字符串/注释里的 `require` 不会误报,嵌套作用域可提取,
   非字面量参数明确报错);深度优先建图,依赖先于使用方,菱形依赖去重(14 个单测)。
-- [ ] M2 打包器:模块包装 + `__require` 运行时 + CLI + 与 `node entry.js` 的输出对拍
-- [ ] M3 循环依赖语义测试 + `--graph` 依赖图输出(mermaid)
+- [x] **M2 打包器**:每个模块包装为 `function(module, exports, require)`,
+  源码零改写;JSON 模块编译为 `JSON.parse(字面量)`;内建 `__require` 运行时
+  (缓存 + 惰性求值);CLI `minibundle <entry.js> [-o bundle.js]`。
+  **对拍测试**:`node entry.js` 与 `node bundle.js` 输出逐字一致
+  (含递归、目录解析、JSON、深层链、错误传播)。
+- [x] **M3 循环依赖与依赖图**:循环依赖遵循 Node CJS 的部分导出语义
+  (先入缓存,拿到的对象可能尚未填充完),并与 `node` 直接运行**逐字对拍**;
+  `--graph` 输出 mermaid 依赖图。累计 22 个单测。
 
 ## 范围
 
