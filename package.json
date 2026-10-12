@@ -1,0 +1,23 @@
+{
+  "name": "minibundle",
+  "version": "0.1.0",
+  "description": "从零实现的迷你 JS 模块打包器:Node 风格模块解析 → 依赖图 → 单文件 bundle",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "minibundle": "bin/minibundle.js"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "bundler",
+    "build-your-own-x",
+    "commonjs",
+    "acorn"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "acorn": "^8.19.0"
+  }
+}

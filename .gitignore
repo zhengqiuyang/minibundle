@@ -1,0 +1,9 @@
+# 依赖
+node_modules/
+
+# 产物
+bundle.js
+*.bundle.js
+
+# 日志
+*.log
